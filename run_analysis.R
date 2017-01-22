@@ -29,4 +29,7 @@ completeDataSet <- rbind(trainRawData,testRawData)
 ## Rename Columns in Data Sets to something more descriptive
 colnames(completeDataSet) <- c("Subject","Activity",requiredVariableNames)
 
+#Calculate Mean Data for Tidy Data
 meanData <- ddply(completeDataSet, .(Subject,Activity), function(n) colMeans(n[,3:81]))
+#Write out Tidy Data
+write.table(meanData,"tidyMeanData.txt", row.name=FALSE)
